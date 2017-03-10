@@ -1800,17 +1800,9 @@ Tabs = Components.create( {
 
 	initialize : function() {
 		var self = this;
-		// var initial = self.options.initial - 1;
-		// if ( initial <= 0 ) {
-		// 	initial = false;
-		// }
-		//
-		// var accordionOverrideCallback = function(){};
-		// if ( self.options.accordion ){
-		// 	accordionOverrideCallback = self.allowMultiplePanesOpen;
-		// }
-
-		this.$el.tabs();
+		this.$el.tabs({
+			active: self.options.initial - 1 // just in case this does become an option for some reason
+		});
 	},
 	//
 	// /**
