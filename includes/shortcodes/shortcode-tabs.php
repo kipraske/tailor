@@ -53,22 +53,22 @@ if ( ! function_exists( 'tailor_shortcode_tabs' ) ) {
 	    $html_atts = apply_filters( 'tailor_shortcode_html_attributes', $html_atts, $atts, $tag );
 	    $html_atts['class'] = implode( ' ', (array) $html_atts['class'] );
 	    $html_atts = tailor_get_attributes( $html_atts );
-	    
+
 	    global $tailor_tab_navigation;
 	    $tailor_tab_navigation = array();
 	    $navigation_items = '';
 	    $content = do_shortcode( $content );
 	    foreach ( $tailor_tab_navigation as $navigation_item_id => $navigation_item ) {
-		    $navigation_items .=    '<li class="tailor-tabs__navigation-item ' . esc_attr( $navigation_item['class'] ). '" data-id="' . esc_attr( $navigation_item_id ) . '">' .
+		    $navigation_items .=    '<li class="tailor-tabs__navigation-item ' . esc_attr( $navigation_item['class'] ). '"><a class="tailor-tabs__navigation-link" href="#' . esc_attr( $navigation_item_id ) . '">' .
 		                                esc_attr( $navigation_item['title'] ) .
-		                            '</li>';
+		                            '</a></li>';
 	    }
 
 	    $outer_html = "<div {$html_atts}>%s</div>";
 	    $inner_html = '<ul class="tailor-tabs__navigation">' . $navigation_items . '</ul>' .
 	                  '<div class="tailor-tabs__content">%s</div>';
 	    $html = sprintf( $outer_html, sprintf( $inner_html, $content ) );
-	    
+
 	    /**
 	     * Filter the HTML for the element.
 	     *
